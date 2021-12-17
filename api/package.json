@@ -1,0 +1,18 @@
+{
+  "name": "pepper-api",
+  "version": "1.0.0",
+  "scripts": {
+    "deploy-prod": "sls deploy --stage prod",
+    "deploy-staging": "sls deploy --stage staging",
+    "start": "serverless offline"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.44.0",
+    "@aws-sdk/s3-request-presigner": "^3.44.0",
+    "@types/aws-lambda": "^8.10.88",
+    "serverless": "^2.69.1",
+    "serverless-offline": "^8.3.1",
+    "serverless-webpack": "^5.6.0",
+    "ts-loader": "^9.2.6"
+  }
+}

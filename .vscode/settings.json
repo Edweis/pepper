@@ -1,0 +1,44 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
+  "eslint.validate": [
+    "javascript"
+  ],
+  "stylelint.validate": ["css", "scss"],
+  "files.watcherExclude": {
+    "**/.git": true,
+    "**/node_modules": true,
+    "**/build": true,
+    "**/dist": true,
+    "**/.serverless": true,
+    "**/.webpack": true,
+    "**/dump": true,
+    "**/coverage": true,
+    "**/.next": true,
+    "**/.serverless_nextjs": true,
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "search.exclude": {
+    "**/.git": true,
+    "**/node_modules": true,
+    "**/.serverless": true,
+    "**/.webpack": true,
+    "**/.next": true,
+    "**/.serverless_nextjs": true,
+    "**/build": true,
+    "**/dist": true,
+    "**/coverage": true,
+    "**/dump": true,
+    "**/package-lock.json": true,
+    "**/*.min.*": true,
+    "**/*.svg": true,
+  },
+  "search.autoSearch": "auto",
+  "compile-hero.disable-compile-files-on-did-save-code": true,
+  "editor.suggest.preview": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editorHoverWidget.highlightForeground": true,
+  "editor.guides.bracketPairs": true
+}

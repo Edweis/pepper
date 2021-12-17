@@ -1,0 +1,56 @@
+service: pepper-api
+provider:
+  name: aws
+  stage: ${opt:stage, 'dev'}
+  region: ap-southeast-1
+  runtime: nodejs12.x
+  environment:
+    STAGE: ${self:provider.stage}
+    BUCKET_NAME: ${self:provider.stage}-${self:service}-automerge-data-v2
+  iamRoleStatements:
+    -  Effect: Allow
+       Action:
+         - "s3:PutObject"
+       Resource:
+        - !Sub "arn:aws:s3:::${self:provider.environment.BUCKET_NAME}/*"
+        - !Sub "arn:aws:s3:::${self:provider.environment.BUCKET_NAME}"
+custom:
+  serverless-offline:
+    resourceRoutes: true
+    httpPort: 2729
+    lambdaPort: 3004
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+
+functions:
+  PresignedUrlHandler:
+    handler: ./src/bucket.handler
+    events:
+      - http:
+          path: bucket
+          method: ANY
+          cors: true
+
+resources:
+  Resources:
+    AutomergeData:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:provider.environment.BUCKET_NAME}
+        CorsConfiguration:
+          CorsRules:
+          - AllowedMethods:
+            - GET
+            - PUT
+            - POST
+            - HEAD
+            AllowedOrigins:
+            - "*"
+            AllowedHeaders:
+            - "*"
+  Outputs:
+    CdnBucketName:
+      Value: ${self:provider.environment.BUCKET_NAME}
